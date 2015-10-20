@@ -1,0 +1,17 @@
+{
+  "name": "feed-proxy",
+  "version": "1.0.0",
+  "description": "Proxy RSS feeds w/ rewriting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pat Cavit <npm@patcavit.com>",
+  "license": "MIT",
+  "dependencies": {
+    "http-proxy": "^1.11.3",
+    "node-windows": "^0.1.10",
+    "rc": "^1.1.2",
+    "through2": "^2.0.0"
+  }
+}

@@ -1,8 +1,13 @@
-var proxy   = require("express-http-proxy"),
+var proxy = require("express-http-proxy"),
     
-    config = require("./config.json"),
-    regex  = new RegExp(config.find, "gm"),
-    app    = require("express")();
+    config  = require("./config.json"),
+    regexes = config.regexes.map(function(regex) {
+        regex.find = new RegExp(regex.find, "gm");
+        
+        return regex;
+    }),
+    
+    app = require("express")();
 
 app.get("/*", proxy(config.host, {
     forwardPath: function(req, res) {
@@ -10,7 +15,13 @@ app.get("/*", proxy(config.host, {
     },
     
     intercept : function(rsp, data, req, res, callback) {
-        callback(null, data.toString().replace(regex, config.replace))
+        data = data.toString();
+        
+        config.regexes.forEach(function(regex) {
+            data = data.replace(regex.find, regex.replace);
+        });
+        
+        callback(null, data);
     },
     
     decorateRequest : function(req) {

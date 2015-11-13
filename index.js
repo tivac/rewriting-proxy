@@ -22,10 +22,6 @@ app.get("/*", proxy(config.host, {
         });
         
         callback(null, data);
-    },
-    
-    decorateRequest : function(req) {
-        req.headers["Cookie"] = config.cookie;
     }
 }));
 

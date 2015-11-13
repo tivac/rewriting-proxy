@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Proxy RSS feeds w/ rewriting",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Pat Cavit <npm@patcavit.com>",
   "license": "MIT",
   "dependencies": {

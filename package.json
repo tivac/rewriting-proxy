@@ -9,5 +9,8 @@
     "express": "^4.13.3",
     "express-http-proxy": "^0.6.0",
     "node-windows": "^0.1.10"
+  },
+  "scripts": {
+    "start": "node ."
   }
 }

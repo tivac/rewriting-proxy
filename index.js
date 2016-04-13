@@ -1,4 +1,6 @@
-var proxy = require("express-http-proxy"),
+var url = require("url"),
+
+    proxy = require("express-http-proxy"),
     
     config  = require("./config.json"),
     regexes = config.regexes.map(function(regex) {
@@ -11,10 +13,15 @@ var proxy = require("express-http-proxy"),
 
 app.get("/*", proxy(config.host, {
     forwardPath: function(req, res) {
-        return require('url').parse(req.url).path;
+        return url.parse(req.url).path;
     },
     
     intercept : function(rsp, data, req, res, callback) {
+        console.log(
+            "Response from %s",
+            url.format({ host : rsp.req._headers.host, pathname : rsp.req.path })
+        );
+
         data = data.toString();
         
         config.regexes.forEach(function(regex) {
